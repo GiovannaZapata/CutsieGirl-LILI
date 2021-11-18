@@ -1,0 +1,217 @@
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-link:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+p.card-text {
+    text-align: justify;
+}
+
+
+/*Estilos presentacion de la pagina*/
+
+.presentacion {
+    display: flex;
+    justify-content: center;
+}
+
+
+/*Inicia estilos de pie de pagina*/
+
+.pie-de-pagina {
+    background: linear-gradient(90deg, rgb(10%, 40%, 85%), rgb(80%, 20%, 40%));
+}
+
+.container {
+    padding-top: 25px;
+}
+
+.col-md-4 {
+    text-align: center;
+}
+
+ul li {
+    list-style: none;
+    text-align: center;
+}
+
+ul li a {
+    color: rgb(236, 231, 231);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 0;
+}
+
+.info a {
+    color: white;
+}
+
+.titulosPiePag {
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+
+/*Estilos para iconos redes sociales*/
+
+.fa-facebook-square{
+    color: white;
+    font-size: 35px;
+    margin-right: 20px;
+}
+
+.fa-instagram{
+    color: white;
+    font-size: 35px;
+    margin-right: 20px;
+
+}
+
+.fa-youtube{
+    color: white;
+    font-size: 35px;
+}
+
+.fab:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook-square:hover{
+    color: rgb(155, 223, 255);
+}
+
+.fa-instagram:hover{
+    color: rgb(255, 92, 206);
+}
+
+.fa-youtube:hover{
+    color: rgb(255, 0, 0);
+}
+
+
+/*Carrito de compras*/
+
+.fa-shopping-cart {
+    font-size: 15px;
+}
+
+.fa-shopping-cart>b {
+    font-weight: bolder;
+    box-sizing: border-box;
+}
+
+
+/*Imagenes opacas*/
+
+.opaco :hover {
+    filter: brightness(0.5);
+    transition: 0.5s;
+}
+
+.contenedor {
+    /*Altura Maxima, toma todo espacio disponible sin pasarse 1200*/
+    max-width: 1200px;
+    /** = 1200px**/
+    /*Centrar letras en la imagen*/
+    margin: 0 auto;
+}
+
+
+/* Estilos inicio cupón */
+
+section>h2 {
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.centrar-texto {
+    text-align: center;
+}
+
+#cupones {
+    background-image: url(../images/CUPONES/background/1519x832.png);
+}
+
+#fondocupon {
+    background-image: url(../images/pruebafondo.jpg);
+}
+
+.boton {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 18px;
+    /*Aqui se uso lo de google(sniped):
+    padding: 5px;
+    width: 10px;
+    Para que el padding no sea tomad en cuenta cuando
+     se le da un ancho(width)*/
+    /* margin-top: 30px; */
+    padding: 10px 30px;
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #2264D4;
+    border-radius: 8px;
+}
+
+.boton:hover {
+    cursor: pointer;
+}
+
+.boton-azul:hover {
+    cursor: pointer;
+    background-color: #2264D4;
+    border: 2px solid #363948;
+}
+
+.boton-azul {
+    background-color: #690155;
+    width: 800px;
+    margin-left: 200px;
+    margin-top: -10px;
+}
+
+.buu {
+    width: 800px;
+    margin-left: 200px;
+    padding: 10px;
+    display: block;
+    /* width: 57%;*/
+    background-color: #aaa9a9;
+    /* margin-bottom: 20px; */
+    border: none;
+    border-radius: 10px;
+}
+
+/* Estilos seccion preguntas */
+
+.container1 {
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    padding: 15px;
+}
+
+.clasPreg {
+    margin-left: 25px;
+}
+
+.radio-inline {
+    margin-right: 70px;
+    margin-left: 25px;
+}

@@ -1,0 +1,77 @@
+/*Estilos de Vista Previa*/
+.nombreArticulo {
+    text-align: left;
+    margin: auto;
+    font-size: 45px;
+}
+
+.nombreAPrecio {
+    text-align: left;
+    margin: auto;
+    font-size: 27px;
+}
+
+.nombreMarca {
+    text-align: left;
+    margin: auto;
+    font-size: 27px;
+}
+
+.nombreDesc {
+    text-align: left;
+    margin: auto;
+    font-size: 15px;
+    justify-content: left;
+
+}
+
+.nombreTalla {
+    text-align: left;
+    margin: auto;
+    font-size: 27px;
+}
+
+.nombreColor {
+    text-align: left;
+    margin: auto;
+    font-size: 27px;
+}
+
+.nombreExistencia {
+    text-align: left;
+    margin: auto;
+    font-size: 27px;
+}
+
+.vistaPrevia {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cantidadVP {
+    width: 20%;
+}
+
+.nombreCantidad {
+    text-align: left;
+    margin: auto;
+    font-size: 27px;
+}
+
+.vistaCarrito {
+    display: flex;
+    justify-content: space-around;
+}
+
+.botonAddArticulo{
+    text-align: center;
+}
+
+.graficaProveedores{
+    text-align: center;
+}
+
+.vistaPre{
+    background-image: url(../images/pruebafondo.jpg);
+}
+

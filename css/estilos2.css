@@ -1,0 +1,142 @@
+/*Estilos Para titulo*/
+.titulosPags{
+  padding: 50px;
+  font-size: 35px;
+  letter-spacing: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3, .fondoPreguntas{
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+h3{
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+.invierno, .vestidos, .disney{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 120px;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3, .fondoPreguntas{
+    background-attachment: scroll;
+  }
+}
+
+/*Estilos pagina Ayuda*/
+.fondoPreguntas{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 100px;
+  padding: 45px;
+}
+.preguntas{
+  color: #777;
+  text-align:center;
+  padding:30px;
+  text-align: justify; 
+  width:75%;
+}
+
+/*Estilos pagina Contáctanos*/
+
+.contentContac{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  
+}
+
+.contactanos{
+  display: flex;
+  justify-content: center;
+  width: 75%;
+}
+
+
+/*Estilos efectos Tienda articulos*/
+.articulo {
+  position: relative;
+  overflow:hidden;
+}
+.imagen {
+  width: 100%;
+  height: 30rem;
+}
+
+.articulo:hover .imagen {
+  -webkit-transform:scale(1.3);
+  transform:scale(1.3);
+  transition: .5s ease;
+  
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.685);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.articulo:hover .overlay{
+  height: 13%;
+  cursor: pointer;
+}
+
+.text {
+  color: white;
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+/*Estilos finalizar compra*/
+
+.contentfinCompra{
+  display:flex; 
+  justify-content:center;
+}
+
+#productosCarritoFinal{
+  display:flex; 
+  justify-content:center; 
+  width:70%;
+  margin-bottom: 100px;
+}
+
+
+.tab-content{
+  padding: 20px;
+}
+
+#visa, #am, #mast, #oxxo, #farmacia, #benavides{
+  margin-left: 25px;
+}
