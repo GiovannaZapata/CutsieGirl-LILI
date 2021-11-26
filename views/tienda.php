@@ -135,15 +135,34 @@ $admin = "'" . $admin . "'";
         <div class="botonAddArticulo">
             <button type="button" class="btn btn-primary btn-agrega" data-toggle="modal" data-target="#modalAddArticulo" onclick="$('#formularioAddArticulo').trigger('reset')" style="border-radius: 15px;">Nuevo artículo</button>
         </div><br>
+
+        
+        <!-- Panel de administrador -->
+        <hr><br>
         <div class="graficaProveedores">
-            <h3>Prendas por proveedor</h3>
-            <center>
-                <div id="grafica" onload="verGrafica()"></div>
-            </center>
+            <h3>Panel de control</h3><br><br>
+            <div class="row">
+                <div class="col">
+                    <h5>Prendas por proveedor</h5>
+                    <center>
+                        <div id="grafica" onload="verGrafica()"></div>
+                    </center>
+                </div>
+                <div class="col">
+                    <h5>Prendas por proveedor</h5>
+                        <center>
+                            <div id="grafica" onload="verGrafica()"></div>
+                        </center>
+                </div>
+            </div>
+
+            
+            
         </div>
+
+
     <?php
     }
-
     if (isset($_SESSION['correo']) && $_SESSION['correo'] != 'admin@cutsiegirl.mx') {
     ?>
         <br>
