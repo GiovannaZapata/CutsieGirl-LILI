@@ -3,7 +3,7 @@ $admin = isset($_GET['admin']) ? base64_decode($_GET['admin']) : '0';
 $admin = "'" . $admin . "'";
 ?>
 
-<body onload="getArticulo(<?php echo $_GET['cat']; ?>, <?php echo $admin; ?>), verGrafica()">
+<body onload="getArticulo(<?php echo $_GET['cat']; ?>, <?php echo $admin; ?>), verGrafica(), getMaximo()">
 
     <div class="titulosPags">
         <?php
@@ -117,9 +117,11 @@ $admin = "'" . $admin . "'";
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="imagen">Imagen:</label>
                                 <input type="file" class="form-control" name="image" id="image">
+                                
                             </div>
                             <div class="modal-footer">
                                 <div class="form-group">
@@ -140,18 +142,18 @@ $admin = "'" . $admin . "'";
         <!-- Panel de administrador -->
         <hr><br>
         <div class="graficaProveedores">
-            <h3>Panel de control</h3><br><br>
+            <h3>Panel de administración</h3><br><br>
             <div class="row">
                 <div class="col">
                     <h5>Prendas por proveedor</h5>
                     <center>
-                        <div id="grafica" onload="verGrafica()"></div>
+                       <div id="grafica" onload="verGrafica()"></div>
                     </center>
                 </div>
                 <div class="col">
-                    <h5>compras por usuario</h5>
+                    <h5>Inversion mayoritaria</h5>
                         <center>
-                            <div id="grafica" onload="verGrafica()"></div>
+                        <div id="maximo" onload="getMaximo()"></div>
                         </center>
                 </div>
             </div>

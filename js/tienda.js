@@ -161,6 +161,7 @@ function addArticulo(cat, admin) {
                 success: function (result) {
                     getArticulo(cat, admin)
                     verGrafica()
+                    getMaximo()
                 }
             })
             //Mensaje de éxito
@@ -197,6 +198,15 @@ function getProveedores() {
         url: "controllers/controller_getProveedores.php",
         success: function (result) {
             $('#listProveedores').append(result)
+        }
+    })
+}
+
+function getMaximo() {
+    $.ajax({
+        url: "controllers/controller_getMaximo.php",
+        success: function (result) {
+            $('#maximo').append(result)
         }
     })
 }
