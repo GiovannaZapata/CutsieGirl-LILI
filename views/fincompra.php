@@ -72,7 +72,7 @@
 
                 <div class="col-3">
                    <div class="form-group">
-                        <input type="number" class="form-control" id="cp" placeholder="C.P" name="cp" required>
+                        <input type="number" class="form-control" id="codpostal" placeholder="C.P" name="codpostal" required>
                     </div>
                 </div>
             </div>

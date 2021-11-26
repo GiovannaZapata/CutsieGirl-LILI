@@ -5,7 +5,7 @@ function finalizarCompra(user, idUsuario) {
     var codigo = $('#security').val()
     var nombreCompleto = $('#nombreCompleto').val()
     var telefono = $('#telefono').val()
-    var cp = $('#cp').val()
+    var codpostal = $('#codpostal').val()
     var dir = $('#direccionVta').val()
     var municipio = $('#municipio').val()
 
@@ -55,14 +55,14 @@ function finalizarCompra(user, idUsuario) {
         return
     }
     //codigo postal
-    if (cp == null || cp.length == 0) {
+    if (codpostal == null || codpostal.length == 0) {
         swal({
             icon: 'warning',
             text: '¡Ingresa un código postal valido!',
             buttons: false,
             timer: 2000
         })
-        $('#cp').focus()
+        $('#codpostal').focus()
         return
     }
     if ($('input:radio[name=type]:checked').val() == 'tarjeta') {

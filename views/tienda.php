@@ -149,7 +149,7 @@ $admin = "'" . $admin . "'";
                     </center>
                 </div>
                 <div class="col">
-                    <h5>Prendas por proveedor</h5>
+                    <h5>compras por usuario</h5>
                         <center>
                             <div id="grafica" onload="verGrafica()"></div>
                         </center>
