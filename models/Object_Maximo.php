@@ -10,7 +10,7 @@ class Maximo {
 
     function getMaximo() {
         
-        $query = "SELECT idArticulo,max(precio) as MAXIMO FROM u672703426_cutsiegirl.inventario";
+        $query = "SELECT idArticulo,max(precio) FROM u672703426_cutsiegirl.inventario";
 
         $stmt = $this->conn->prepare($query);
 

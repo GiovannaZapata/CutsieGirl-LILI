@@ -8,6 +8,14 @@ $db = $database->getConnection();
 $maximo = new Maximo($db);
 $stmt = $maximo->getMaximo();
 
-echo "$row['precio']";
+
+$row = json_encode($stmt->fetchAll());
+
+echo $row;
+
+//print_r($row);
+
+//echo "$row['precio']";
+
 
 ?>
