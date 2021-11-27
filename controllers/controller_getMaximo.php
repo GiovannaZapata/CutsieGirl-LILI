@@ -8,14 +8,8 @@ $db = $database->getConnection();
 $maximo = new Maximo($db);
 $stmt = $maximo->getMaximo();
 
-
-$row = json_encode($stmt->fetchAll());
-
-echo $row;
-
-//print_r($row);
-
-//echo "$row['precio']";
-
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo $row['precio'];
+}
 
 ?>
