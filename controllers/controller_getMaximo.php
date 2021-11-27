@@ -9,7 +9,12 @@ $maximo = new Maximo($db);
 $stmt = $maximo->getMaximo();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    echo $row['precio'];
+    ?>
+
+<h6>Nombre del articulo: <?php echo $row['nombre']; ?></h6>
+<h6>Inversion: <?php echo $row['mul']; ?></h6><br>
+<?php
 }
+
 
 ?>

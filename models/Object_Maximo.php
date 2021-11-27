@@ -11,7 +11,7 @@ class Maximo {
 
     function getMaximo() {
         
-        $query = "SELECT idArticulo,max(precio) as precio FROM u672703426_cutsiegirl.inventario";
+        $query = "SELECT a.nombre,max((b.existencia*b.precio))as mul FROM u672703426_cutsiegirl.articulo a, u672703426_cutsiegirl.inventario b where a.idArticulo=b.idArticulo";
 
         $stmt = $this->conn->prepare($query);
         
