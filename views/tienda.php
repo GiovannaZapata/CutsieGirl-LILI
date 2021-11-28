@@ -156,7 +156,8 @@ $admin = "'" . $admin . "'";
                         <div id="maximo" onload="getMaximo()"></div>
                         </center>
                 </div>
-            </div><br><br>    
+            </div><br><br>
+        
             
             
         </div>

@@ -46,11 +46,23 @@ class Maximo {
             return 0; 
 
     }
-    
+
     function getAuditoria(){
 
-        $query = "CREATE TRIGGER `trigger_insert_usuario` AFTER INSERT ON `u672703426_cutsiegirl.usuario` 
-        FOR EACH ROW INSERT into u672703426_cutsiegirl.auditoria (idUsuario,nombre,fecha,accion) VALUES (new.idUsuario,new.nombre,NOW(),'se agrego nuevo usuario')";
+        $query = "SELECT idUsuario,nombre,fecha,accion from u672703426_cutsiegirl.auditoria";
+
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute())
+            return $stmt;
+        else
+            return 0; 
+
+    }
+
+    function getArticulosEliminados(){
+
+        $query = "SELECT a.idArticulo,a.nombre,a.marca,a.descripcion,(b.nombre)as nomProveedor,(c.nombre)as nomCategoria from u672703426_cutsiegirl.delete_articulo a, 
+        u672703426_cutsiegirl.proveedores b, u672703426_cutsiegirl.categoria c where a.idProveedor=b.idProveedor and c.idCategoria=a.idCategoria";
 
         $stmt = $this->conn->prepare($query);
         if($stmt->execute())
