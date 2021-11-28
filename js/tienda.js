@@ -202,6 +202,7 @@ function getProveedores() {
     })
 }
 
+//Consultas
 function getMaximo() {
     $.ajax({
         url: "controllers/controller_getMaximo.php",

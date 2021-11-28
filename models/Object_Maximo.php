@@ -45,6 +45,19 @@ class Maximo {
         else
             return 0; 
 
-    }   
+    }
+    
+    function getAuditoria(){
+
+        $query = "CREATE TRIGGER `trigger_insert_usuario` AFTER INSERT ON `u672703426_cutsiegirl.usuario` 
+        FOR EACH ROW INSERT into u672703426_cutsiegirl.auditoria (idUsuario,nombre,fecha,accion) VALUES (new.idUsuario,new.nombre,NOW(),'se agrego nuevo usuario')";
+
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute())
+            return $stmt;
+        else
+            return 0; 
+
+    }
 }
 ?>

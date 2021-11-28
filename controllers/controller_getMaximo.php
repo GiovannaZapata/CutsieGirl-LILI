@@ -68,3 +68,11 @@ while ($aux2 = $aux->fetch(PDO::FETCH_ASSOC)) {
 } 
 ?>
 </table>
+
+
+
+<?php
+$totalUser = new Maximo($db);
+$auxTotal = $totalUser->getAuditoria();
+
+?>
