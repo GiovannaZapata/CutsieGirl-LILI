@@ -47,9 +47,9 @@ class Maximo {
 
     }
 
-    function getAuditoria(){
+    function getPedidoReciente(){
 
-        $query = "SELECT idUsuario,nombre,fecha,accion from u672703426_cutsiegirl.auditoria";
+        $query = "SELECT idPedido,nombre_usuario,fecha,venta_total,idCupon from u672703426_cutsiegirl.pedido_reciente";
 
         $stmt = $this->conn->prepare($query);
         if($stmt->execute())

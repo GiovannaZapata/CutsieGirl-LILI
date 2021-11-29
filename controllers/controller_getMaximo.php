@@ -72,24 +72,26 @@ while ($aux2 = $aux->fetch(PDO::FETCH_ASSOC)) {
 
 <?php
 $totalUser = new Maximo($db);
-$auxTotal = $totalUser->getAuditoria();
+$auxTotal = $totalUser->getPedidoReciente();
 ?>
-<br><br><h5>Usuarios registrados</h5><br>
+<br><br><h5>Ventas registradas recientemente</h5><br>
 <table>
 <tr>
-    <th>Id Usuario</th>
-    <th>Nombre</th>
-    <th>Fecha de registro</th>
-    <th>Acción</th>
+    <th>idPedido</th>
+    <th>Usuario</th>
+    <th>Fecha</th>
+    <th>Venta total</th>
+    <th>idCupon</th>
   </tr>
 <?php
 while ($auxTotal2 = $auxTotal->fetch(PDO::FETCH_ASSOC)){
   ?>
     <tr>
-    <td> <?php echo $auxTotal2['idUsuario']; ?></td>
-    <td> <?php echo $auxTotal2['nombre']; ?></td>
+    <td> <?php echo $auxTotal2['idPedido']; ?></td>
+    <td> <?php echo $auxTotal2['nombre_usuario']; ?></td>
     <td> <?php echo $auxTotal2['fecha']; ?></td>
-    <td> <?php echo $auxTotal2['accion']; ?></td>
+    <td> <?php echo $auxTotal2['venta_total']; ?></td>
+    <td> <?php echo $auxTotal2['idCupon']; ?></td>
     </tr>
     <?php
 }
@@ -102,7 +104,7 @@ while ($auxTotal2 = $auxTotal->fetch(PDO::FETCH_ASSOC)){
 $eliminado = new Maximo($db);
 $auxEliminado = $eliminado->getArticulosEliminados();
 ?>
-<br><br><h5>Articulos eliminados recientemente</h5><br>
+<br><br><h5>Articulos eliminados</h5><br>
 <table>
 <tr>
     <th>Id Articulo</th>
