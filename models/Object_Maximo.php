@@ -71,5 +71,14 @@ class Maximo {
             return 0; 
 
     }
+    function getP1(){
+        $query = "CALL p1()";
+
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute())
+            return $stmt;
+        else
+            return 0; 
+    }
 }
 ?>

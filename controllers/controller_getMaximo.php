@@ -130,3 +130,13 @@ while ($auxEliminado2 = $auxEliminado->fetch(PDO::FETCH_ASSOC)){
 }
 ?>
 </table>
+<?php
+$p1 = new Maximo($db);
+$auxp1 = $p1->getP1();
+while ($auxp12 = $auxp1->fetch(PDO::FETCH_ASSOC)){
+  ?>
+  <br><br>
+  <h5>Articulos en inventario: <?php echo $auxp12['disponibles']; ?></h5>
+  <?php
+}
+?>
