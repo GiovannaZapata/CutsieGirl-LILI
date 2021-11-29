@@ -17,7 +17,7 @@ class Nota {
 
     function addNota() {
         
-        $query = "INSERT INTO u672703426_cutsiegirl.nota
+        $query = "INSERT INTO u672703426_cutsiegirl.pedido
                   SET
                   idUsuario = :idUsuario,
                   fecha = :fecha,
