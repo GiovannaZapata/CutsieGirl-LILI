@@ -14,6 +14,9 @@
     tr:nth-child(even) {
         background-color: #dddddd;
     }
+    tr.fondo{
+  background-color: white;
+}
 </style>
 <?php $_GET['cat'] = isset($_GET['cat']) && $_GET['cat'] != '' && $_GET['cat'] > 0 && $_GET['cat'] < 4 ? $_GET['cat'] : '1';
 $admin = isset($_GET['admin']) ? base64_decode($_GET['admin']) : '0';
@@ -185,22 +188,26 @@ $db = $database->getConnection();
                     <div id="grafica" onload="verGrafica()"></div>
                 </center>
             </div>
-            <div class="col">
-                <h5>Inversion mayoritaria</h5>
+        </div><br><br>
+        <div class="row">
+        <div class="col">
                 <center>
                     <div id="maximo" onload="getMaximo()"></div>
                 </center>
             </div>
-        </div><br><br>
-
-        <div class="row">
-            <div class="col">
+        </div>
+        <center>
+<table>
+    <tr>
+        <td>
+        
                 
                 <center>
                         <?php
                            $p2 = new Maximo($db);
                             $auxp = $p2->busquedaArticulo();
                         ?>
+                        <h5>Productos con precio mayor a $200.</h5>
                     <table width="50%">
                         <tr>
                             <th>Nombre</th>
@@ -223,9 +230,12 @@ $db = $database->getConnection();
                     </table>
                 </center>
                  
-            </div>
+            
+            </td>
+                        <td>
             <div class="col">
                 <center>
+                    <br>
                 <form>
                     <label for="nombre">Ingresa nombre de proveedor a buscar: </label>
                     <input type="text" name="nombreProveedor" id="nombreProveedor" required="required">
@@ -257,19 +267,19 @@ $db = $database->getConnection();
                 </script>
             
                 </center>
-            </div>
-        </div><br><br><br>
+            
+            
+        <br><br><br>
 
-        <div class="row">
-            <div class="col-6">
+        <center>
 
                 <form>
                     <label for="nameArticulo">Ingresa nombre de articulo a buscar: </label>
                     <input type="text" name="nameArticulo" id="nameArticulo" required="required">
                     <input type="button" id="botonBuscarArticulo" value="Buscar"><br><br>
-                    <div id="resultadoArticulo"></div>
+                    <div id="resultadoArticulo">
                 </form>
-
+                </center>
                 <script>
                     $('#botonBuscarArticulo').click(function () {
                         var nameArticulo = document.getElementById('nameArticulo').value;
@@ -291,14 +301,15 @@ $db = $database->getConnection();
                             });
                     });
                 </script>                
-            </div>
-        </div><br><br><br>
-
-        <div class="row">
-            <div class="col">
+            
+        
+        </td>
+                </tr>
+                <tr class='fondo'><td>
+                <center>
                 <input type="button" id="botonVistaArticulo" value="Ver Articulos de inventario"><br><br>
-                <div id="resultadoVistaArticulo"></div><br><br><br>
-
+                <div id="resultadoVistaArticulo"></div>
+                </center>
                 <script>
                     $('#botonVistaArticulo').click(function () {
 
@@ -316,12 +327,14 @@ $db = $database->getConnection();
                             });
                     });
                 </script>
-            </div>
-
-            <div class="col">
+            
+</td>
+<td>
+<center>
+    <br><br>
             <input type="button" id="botonVistaUsuario" value="Ver Relacion Usuario-Pedido"><br><br>
                 <div id="resultadoVistaUsuario"></div><br><br><br>
-
+                </center>
                 <script>
                     $('#botonVistaUsuario').click(function () {
 
@@ -339,13 +352,12 @@ $db = $database->getConnection();
                             });
                     });
                 </script>
-            </div>
+            
 
-        </div>
-
-        </div>
-
-
+    
+        </td></tr>
+        </table>
+                </center>
     <?php
     }
     if (isset($_SESSION['correo']) && $_SESSION['correo'] != 'admin@cutsiegirl.mx') {
