@@ -198,7 +198,7 @@ $db = $database->getConnection();
                 
                 <center>
                         <?php
-                            $p2 = new Maximo($db);
+                           $p2 = new Maximo($db);
                             $auxp = $p2->busquedaArticulo();
                         ?>
                     <table width="50%">
@@ -209,7 +209,7 @@ $db = $database->getConnection();
                             <th>Precio</th>
                         </tr>
                         <?php
-                            while ($auxprueba = $auxp->fetch(PDO::FETCH_ASSOC)){
+                           while ($auxprueba = $auxp->fetch(PDO::FETCH_ASSOC)){
                         ?>
                         <tr>
                             <td> <?php echo $auxprueba['nombre']; ?></td>
@@ -256,6 +256,8 @@ $db = $database->getConnection();
 
                     });
                 </script>
+
+                                
                 </center>
             </div>
         </div>
@@ -263,8 +265,8 @@ $db = $database->getConnection();
         <div class="row">
             <div class="col-6">
                 <h5>Usuario que mas compras ha realizado</h5>
-                    <?php
-                        $user_mayor_compra = new Maximo($db);
+                   <?php
+                      $user_mayor_compra = new Maximo($db);
                         $aux_user_mayor_compra = $user_mayor_compra->usuario_mayor_compra();
                         ?>
 
@@ -281,7 +283,7 @@ $db = $database->getConnection();
                             <td> <?php echo $aux_user_mayor_compra2['total_venta']; ?></td>
                         </tr>
                         <?php
-                            }
+                            } 
                         ?>
                     </table>
             </div>
