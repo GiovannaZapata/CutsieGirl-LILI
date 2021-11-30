@@ -319,7 +319,26 @@ $db = $database->getConnection();
             </div>
 
             <div class="col">
-                <!--Aqui iria lo de la siguiente vista-->
+            <input type="button" id="botonVistaUsuario" value="Ver Relacion Usuario-Pedido"><br><br>
+                <div id="resultadoVistaUsuario"></div><br><br><br>
+
+                <script>
+                    $('#botonVistaUsuario').click(function () {
+
+                        $.ajax({
+                                url: "./models/Object_VistaUsuario.php",
+                            })
+                            .done(function (res) {
+                                $('#resultadoVistaUsuario').html(res)
+                            })
+                            .fail(function () {
+                                console.log("error");
+                            })
+                            .always(function () {
+                                console.log("complete");
+                            });
+                    });
+                </script>
             </div>
 
         </div>
