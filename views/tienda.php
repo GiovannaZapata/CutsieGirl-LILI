@@ -294,6 +294,36 @@ $db = $database->getConnection();
             </div>
         </div><br><br><br>
 
+        <div class="row">
+            <div class="col">
+                <input type="button" id="botonVistaArticulo" value="Ver Articulos de inventario"><br><br>
+                <div id="resultadoVistaArticulo"></div><br><br><br>
+
+                <script>
+                    $('#botonVistaArticulo').click(function () {
+
+                        $.ajax({
+                                url: "./models/Object_VistaArticulo.php",
+                            })
+                            .done(function (res) {
+                                $('#resultadoVistaArticulo').html(res)
+                            })
+                            .fail(function () {
+                                console.log("error");
+                            })
+                            .always(function () {
+                                console.log("complete");
+                            });
+                    });
+                </script>
+            </div>
+
+            <div class="col">
+                <!--Aqui iria lo de la siguiente vista-->
+            </div>
+
+        </div>
+
         </div>
 
 
