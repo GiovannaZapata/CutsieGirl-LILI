@@ -1,6 +1,28 @@
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 <?php $_GET['cat'] = isset($_GET['cat']) && $_GET['cat'] != '' && $_GET['cat'] > 0 && $_GET['cat'] < 4 ? $_GET['cat'] : '1';
 $admin = isset($_GET['admin']) ? base64_decode($_GET['admin']) : '0';
 $admin = "'" . $admin . "'";
+include_once './connection/Object_Connection.php';
+include_once './models/Object_Maximo.php';
+
+$database = new Database();
+$db = $database->getConnection();
+
 ?>
 
 <body onload="getArticulo(<?php echo $_GET['cat']; ?>, <?php echo $admin; ?>), verGrafica(), getMaximo()">
@@ -157,8 +179,41 @@ $admin = "'" . $admin . "'";
                         </center>
                 </div>
             </div><br><br>
-        
-            
+        <div class="row">
+            <div class="col">
+                <center>
+                        <?php
+                $p2 = new Maximo($db);
+                $auxp = $p2->busquedaArticulo();
+                ?> <table width="50%">
+
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>
+                    </tr>
+                    <?php
+                while ($auxprueba = $auxp->fetch(PDO::FETCH_ASSOC)){
+                ?>
+                
+                <tr>
+                    <td> <?php echo $auxprueba['nombre']; ?></td>
+                    <td> <?php echo $auxprueba['marca']; ?></td>
+                    <td> <?php echo $auxprueba['existencia']; ?></td>
+                    <td> <?php echo $auxprueba['precio']; ?></td>
+                    </tr>
+                
+                <?php
+                }
+                ?>
+            </table>
+            </center>
+            </div>
+            <div >
+                <label for="">Hola</label>
+            </div>
+        </div>
             
         </div>
 

@@ -1,5 +1,5 @@
 <?php
-include_once "../connection/Object_Connection.php";
+
 
 class Maximo {
     private $conn;
@@ -73,6 +73,15 @@ class Maximo {
     }
     function getP1(){
         $query = "CALL p1()";
+
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute())
+            return $stmt;
+        else
+            return 0; 
+    }
+    function busquedaArticulo(){
+        $query = "CALL busquedaArt()";
 
         $stmt = $this->conn->prepare($query);
         if($stmt->execute())
