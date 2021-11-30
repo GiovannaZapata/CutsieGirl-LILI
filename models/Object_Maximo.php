@@ -1,9 +1,9 @@
 <?php
 
-
 class Maximo {
     private $conn;
     public  $idArticulo;
+
 
     function __construct($db) {
         $this->conn = $db;
@@ -89,5 +89,20 @@ class Maximo {
         else
             return 0; 
     }
+
+    function usuario_mayor_compra(){
+        $query = "CALL usuario_mayor_compra()";
+
+        $stmt = $this->conn->prepare($query);
+        if($stmt->execute())
+            return $stmt;
+        else
+            return 0; 
+    }
+
+    
+
+
 }
+
 ?>
