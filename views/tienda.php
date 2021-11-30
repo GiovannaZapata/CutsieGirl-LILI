@@ -228,9 +228,8 @@ $db = $database->getConnection();
                 <center>
                 <form>
                     <label for="nombre">Ingresa nombre de proveedor a buscar: </label>
-                    <input type="text" name="nombreProveedor" id="nombreProveedor" required="required"></br>
-
-                    <input type="button" id="botonBuscarProveedor" value="Buscar">
+                    <input type="text" name="nombreProveedor" id="nombreProveedor" required="required">
+                    <input type="button" id="botonBuscarProveedor" value="Buscar"><br><br>
                     <div id="respuesta"></div>
                 </form>
 
@@ -256,40 +255,46 @@ $db = $database->getConnection();
 
                     });
                 </script>
-
-                                
+            
                 </center>
             </div>
-        </div>
+        </div><br><br><br>
 
         <div class="row">
             <div class="col-6">
-                <h5>Usuario que mas compras ha realizado</h5>
-                   <?php
-                      $user_mayor_compra = new Maximo($db);
-                        $aux_user_mayor_compra = $user_mayor_compra->usuario_mayor_compra();
-                        ?>
 
-                    <table width="50%">
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Total ventas</th>
-                        </tr>
-                        <?php
-                            while ($aux_user_mayor_compra2 = $aux_user_mayor_compra->fetch(PDO::FETCH_ASSOC)){
-                        ?>
-                        <tr>
-                            <td> <?php echo $aux_user_mayor_compra2['username']; ?></td>
-                            <td> <?php echo $aux_user_mayor_compra2['total_venta']; ?></td>
-                        </tr>
-                        <?php
-                            } 
-                        ?>
-                    </table>
+                <form>
+                    <label for="nameArticulo">Ingresa nombre de articulo a buscar: </label>
+                    <input type="text" name="nameArticulo" id="nameArticulo" required="required">
+                    <input type="button" id="botonBuscarArticulo" value="Buscar"><br><br>
+                    <div id="resultadoArticulo"></div>
+                </form>
+
+                <script>
+                    $('#botonBuscarArticulo').click(function () {
+                        var nameArticulo = document.getElementById('nameArticulo').value;
+                        var ruta = "nameArticulo=" + nameArticulo;
+
+                        $.ajax({
+                                url: "./models/Object_ConsultarArticulo.php",
+                                type: "POST",
+                                data: ruta,
+                            })
+                            .done(function (res) {
+                                $('#resultadoArticulo').html(res)
+                            })
+                            .fail(function () {
+                                console.log("error");
+                            })
+                            .always(function () {
+                                console.log("complete");
+                            });
+                    });
+                </script>                
             </div>
-        </div>
+        </div><br><br><br>
 
-    </div>
+        </div>
 
 
     <?php

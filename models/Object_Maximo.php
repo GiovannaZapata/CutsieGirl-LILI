@@ -90,19 +90,6 @@ class Maximo {
             return 0; 
     }
 
-    function usuario_mayor_compra(){
-        $query = "CALL usuario_mayor_compra()";
-
-        $stmt = $this->conn->prepare($query);
-        if($stmt->execute())
-            return $stmt;
-        else
-            return 0; 
-    }
-
-    
-
-
 }
 
 ?>
