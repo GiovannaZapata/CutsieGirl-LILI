@@ -16,7 +16,8 @@ $stmt = $vistaUs->vistaUsuario();
         <th>Apellido Paterno</th>
         <th>Apellido Materno</th>
         <th>Fecha de compra</th>
-        <th>Total</th>	
+        <th>Total</th>
+    </tr>	
     <?php
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     ?>

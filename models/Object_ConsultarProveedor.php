@@ -10,15 +10,15 @@ $stmt = $consulta->consulta($nombreProveedor);
 
 ?>
 
-<table width="50%">
+<table>
     <tr>
-        <th>idProveedor</th>
+        <th>ID</th>
         <th>Nombre</th>
         <th>Telefono</th>
         <th>Correo</th>
         <th>Calle</th>
         <th>Colonia</th>
-        <th>No. Exterior</th>
+        <th>Número</th>
         <th>Código postal</th>
     </tr>
     <?php

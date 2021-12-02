@@ -18,6 +18,7 @@ $stmt = $vistaArt->vistaArticulo();
         <th>Color</th>
         <th>Precio</th>
         <th>Talla</th>	
+    </tr>
     <?php
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     ?>

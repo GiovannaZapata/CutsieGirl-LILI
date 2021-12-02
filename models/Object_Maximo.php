@@ -22,10 +22,11 @@ class Maximo {
     } 
     function getMinimo(){
          
+        
         $query = "SELECT b.nombre, min(a.cantidad) as cantidad, a.fecha
                 FROM u672703426_cutsiegirl.compras a, u672703426_cutsiegirl.proveedores b
                 WHERE a.idProveedor=b.idProveedor";
-
+        
         $stmt = $this->conn->prepare($query);
         if($stmt->execute())
             return $stmt;

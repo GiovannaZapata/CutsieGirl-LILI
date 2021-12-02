@@ -14,9 +14,10 @@
     tr:nth-child(even) {
         background-color: #dddddd;
     }
-    tr.fondo{
-  background-color: white;
-}
+
+    tr.fondo {
+        background-color: white;
+    }
 </style>
 <?php $_GET['cat'] = isset($_GET['cat']) && $_GET['cat'] != '' && $_GET['cat'] > 0 && $_GET['cat'] < 4 ? $_GET['cat'] : '1';
 $admin = isset($_GET['admin']) ? base64_decode($_GET['admin']) : '0';
@@ -178,203 +179,249 @@ $db = $database->getConnection();
 
 
     <!-- Panel de administrador -->
-    <hr><br>
-    <div class="graficaProveedores">
+
+    <div class="graficaProveedores" style="background-color: #F5F5F5;">
+        <hr>
+        <br>
         <h3>Panel de administración</h3><br><br>
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-8" style="width: 50%; border-radius: 5px; background-color: white;">
+                <br>
                 <h5>Prendas por proveedor</h5>
                 <center>
                     <div id="grafica" onload="verGrafica()"></div>
                 </center>
             </div>
+
         </div><br><br>
         <div class="row">
-        <div class="col">
+            <div class="col">
                 <center>
                     <div id="maximo" onload="getMaximo()"></div>
                 </center>
             </div>
         </div>
-        <center>
-<table>
-    <tr>
-        <td>
-        
-                
-                <center>
-                        <?php
-                           $p2 = new Maximo($db);
-                            $auxp = $p2->busquedaArticulo();
-                        ?>
-                        <h5>Productos con precio mayor a $200.</h5>
-                    <table width="50%">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Marca</th>
-                            <th>Existencia</th>
-                            <th>Precio</th>
-                        </tr>
-                        <?php
-                           while ($auxprueba = $auxp->fetch(PDO::FETCH_ASSOC)){
-                        ?>
-                        <tr>
-                            <td> <?php echo $auxprueba['nombre']; ?></td>
-                            <td> <?php echo $auxprueba['marca']; ?></td>
-                            <td> <?php echo $auxprueba['existencia']; ?></td>
-                            <td> <?php echo $auxprueba['precio']; ?></td>
-                        </tr>
-                        <?php
-                            }
-                        ?>
-                    </table>
-                </center>
-                 
-            
-            </td>
-                        <td>
-            <div class="col">
-                <center>
-                    <br>
-                <form>
-                    <label for="nombre">Ingresa nombre de proveedor a buscar: </label>
-                    <input type="text" name="nombreProveedor" id="nombreProveedor" required="required">
-                    <input type="button" id="botonBuscarProveedor" value="Buscar"><br><br>
-                    <div id="respuesta"></div>
-                </form>
-
-                <script>
-                    $('#botonBuscarProveedor').click(function () {
-                        var nombreProveedor = document.getElementById('nombreProveedor').value;
-                        var ruta = "nombreProveedor=" + nombreProveedor;
-
-                        $.ajax({
-                                url: "./models/Object_Procedure.php",
-                                type: "POST",
-                                data: ruta,
-                            })
-                            .done(function (res) {
-                                $('#respuesta').html(res)
-                            })
-                            .fail(function () {
-                                console.log("error");
-                            })
-                            .always(function () {
-                                console.log("complete");
-                            });
-
-                    });
-                </script>
-            
-                </center>
-            
-            
-        <br><br><br>
 
         <center>
+            <table>
+                <tr>
+                    <td style="width: 50%; padding-bottom: 100px;">
+                        <center>
+                            <?php
+                                $p2 = new Maximo($db);
+                                $auxp = $p2->busquedaArticulo();
+                            ?>
+                            <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+                                <h5>Productos con precio mayor a $200</h5><br>
+                                <table width="50%">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Marca</th>
+                                        <th>Existencia</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                    <?php
+                                        while ($auxprueba = $auxp->fetch(PDO::FETCH_ASSOC)){
+                                    ?>
+                                    <tr>
+                                        <td> <?php echo $auxprueba['nombre']; ?></td>
+                                        <td> <?php echo $auxprueba['marca']; ?></td>
+                                        <td> <?php echo $auxprueba['existencia']; ?></td>
+                                        <td> <?php echo $auxprueba['precio']; ?></td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </table>
+                            </div>
+                        </center>
+                    </td>
 
-                <form>
-                    <label for="nameArticulo">Ingresa nombre de articulo a buscar: </label>
-                    <input type="text" name="nameArticulo" id="nameArticulo" required="required">
-                    <input type="button" id="botonBuscarArticulo" value="Buscar"><br><br>
-                    <div id="resultadoArticulo">
-                </form>
-                </center>
-                <script>
-                    $('#botonBuscarArticulo').click(function () {
-                        var nameArticulo = document.getElementById('nameArticulo').value;
-                        var ruta = "nameArticulo=" + nameArticulo;
+                    <td style="width: 50%; padding-bottom: 100px;">
+                        <div class="col">
+                            <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+                                <center>
+                                    <h5><label for="nombreProveedor" class="col-form-label">Buscar proveedor</label>
+                                    </h5><br>
+                                    <form>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="nombreProveedor"
+                                                    name="nombreProveedor"
+                                                    placeholder="Ingresa nombre de proveedor a buscar"
+                                                    required="required">
+                                            </div>
+                                            <button type="button" class="btn btn-primary col-sm-2 col-form-label"
+                                                id="botonBuscarProveedor">Buscar</button>
+                                        </div><br>
+                                        <div id="respuesta"></div>
+                                    </form>
 
-                        $.ajax({
-                                url: "./models/Object_ConsultarArticulo.php",
-                                type: "POST",
-                                data: ruta,
-                            })
-                            .done(function (res) {
-                                $('#resultadoArticulo').html(res)
-                            })
-                            .fail(function () {
-                                console.log("error");
-                            })
-                            .always(function () {
-                                console.log("complete");
-                            });
-                    });
-                </script>                
-            
-        
-        </td>
+                                    <script>
+                                        $('#botonBuscarProveedor').click(function () {
+                                            var nombreProveedor = document.getElementById('nombreProveedor').value;
+                                            var ruta = "nombreProveedor=" + nombreProveedor;
+
+                                            //verificar que se hay ingresado un proveedor
+                                            if (nombreProveedor == null || nombreProveedor.length == 0 || /^\s+$/.test(nombreProveedor)) {
+                                                swal({
+                                                    icon: 'warning',
+                                                    text: '¡Ingrese proveedor a buscar!',
+                                                    buttons: false,
+                                                    timer: 2000
+                                                })
+                                                $('#nombreProveedor').focus()
+                                                return
+                                            }
+
+                                            $.ajax({
+                                                    url: "./models/Object_ConsultarProveedor.php",
+                                                    type: "POST",
+                                                    data: ruta,
+                                                })
+                                                .done(function (res) {
+                                                    $('#respuesta').html(res)
+                                                })
+                                                .fail(function () {
+                                                    console.log("error");
+                                                })
+                                                .always(function () {
+                                                    console.log("complete");
+                                                });
+
+                                        });
+                                    </script>
+
+                                </center>
+                            </div><br><br>
+
+                            <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+                                <center>
+                                    <h5><label for="nameArticulo" class="col-form-label">Buscar artículo</label></h5>
+                                    <br>
+                                    <form>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="nameArticulo"
+                                                    name="nameArticulo"
+                                                    placeholder="Ingresa nombre del articulo a buscar"
+                                                    required="required">
+                                            </div>
+                                            <button type="button" class="btn btn-primary col-sm-2 col-form-label"
+                                                id="botonBuscarArticulo">Buscar</button>
+                                        </div><br>
+                                        <div id="resultadoArticulo"></div>
+                                    </form>
+                                </center>
+                                <script>
+                                    $('#botonBuscarArticulo').click(function () {
+                                        var nameArticulo = document.getElementById('nameArticulo').value;
+                                        var ruta = "nameArticulo=" + nameArticulo;
+
+                                        //verificar que se hay ingresado un articulo
+                                        if (nameArticulo == null || nameArticulo.length == 0 || /^\s+$/.test(nameArticulo)) {
+                                            swal({
+                                                icon: 'warning',
+                                                text: '¡Ingrese articulo a buscar!',
+                                                buttons: false,
+                                                timer: 2000
+                                            })
+                                            $('#nameArticulo').focus()
+                                            return
+                                        }
+
+                                        $.ajax({
+                                                url: "./models/Object_ConsultarArticulo.php",
+                                                type: "POST",
+                                                data: ruta,
+                                            })
+                                            .done(function (res) {
+                                                $('#resultadoArticulo').html(res)
+                                            })
+                                            .fail(function () {
+                                                console.log("error");
+                                            })
+                                            .always(function () {
+                                                console.log("complete");
+                                            });
+                                    });
+                                </script>
+                            </div>
+
+                    </td>
                 </tr>
-                <tr class='fondo'><td>
-                <center>
-                <input type="button" id="botonVistaArticulo" value="Ver Articulos de inventario"><br><br>
-                <div id="resultadoVistaArticulo"></div>
-                </center>
-                <script>
-                    $('#botonVistaArticulo').click(function () {
+                <tr class='fondo'>
+                    <td>
+                        <center>
+                            <button type="button" id="botonVistaArticulo" class="btn btn-outline-dark">Ver artículos en
+                                inventario</button><br><br>
+                            <div id="resultadoVistaArticulo"></div>
+                        </center>
+                        <script>
+                            $('#botonVistaArticulo').click(function () {
 
-                        $.ajax({
-                                url: "./models/Object_VistaArticulo.php",
-                            })
-                            .done(function (res) {
-                                $('#resultadoVistaArticulo').html(res)
-                            })
-                            .fail(function () {
-                                console.log("error");
-                            })
-                            .always(function () {
-                                console.log("complete");
+                                $.ajax({
+                                        url: "./models/Object_VistaArticulo.php",
+                                    })
+                                    .done(function (res) {
+                                        $('#resultadoVistaArticulo').html(res)
+                                    })
+                                    .fail(function () {
+                                        console.log("error");
+                                    })
+                                    .always(function () {
+                                        console.log("complete");
+                                    });
                             });
-                    });
-                </script>
-            
-</td>
-<td>
-<center>
-    <br><br>
-            <input type="button" id="botonVistaUsuario" value="Ver Relacion Usuario-Pedido"><br><br>
-                <div id="resultadoVistaUsuario"></div><br><br><br>
-                </center>
-                <script>
-                    $('#botonVistaUsuario').click(function () {
+                        </script>
+                    </td>
+                    <td>
+                        <center>
+                            <button type="button" id="botonVistaUsuario" class="btn btn-outline-dark">Ver relación
+                                Usuario-Pedido</button><br><br>
+                            <div id="resultadoVistaUsuario"></div>
+                        </center>
+                        <script>
+                            $('#botonVistaUsuario').click(function () {
 
-                        $.ajax({
-                                url: "./models/Object_VistaUsuario.php",
-                            })
-                            .done(function (res) {
-                                $('#resultadoVistaUsuario').html(res)
-                            })
-                            .fail(function () {
-                                console.log("error");
-                            })
-                            .always(function () {
-                                console.log("complete");
+                                $.ajax({
+                                        url: "./models/Object_VistaUsuario.php",
+                                    })
+                                    .done(function (res) {
+                                        $('#resultadoVistaUsuario').html(res)
+                                    })
+                                    .fail(function () {
+                                        console.log("error");
+                                    })
+                                    .always(function () {
+                                        console.log("complete");
+                                    });
                             });
-                    });
-                </script>
-            
+                        </script>
 
-    
-        </td></tr>
-        </table>
-                </center>
-    <?php
+
+
+                    </td>
+                </tr>
+            </table><br><br><br>
+        </center>
+        <?php
     }
     if (isset($_SESSION['correo']) && $_SESSION['correo'] != 'admin@cutsiegirl.mx') {
     ?>
-    <br>
-    <div id="fondocupon">
         <br>
-        <br>
-        <h1 class="centrar-texto">NOS ENCANTA CONSENTIRTE, ASÍ QUE...</h1>
-        <br>
-        <h4 style="text-align: center;">Usa el código del siguiente cupón en tus compras para tener descuentos
-            especiales.</h4>
-        <br>
-        <div class="centrar-texto">
-            <img src="images/CUPONES/propuestas a modificar/3 cupon cutsiecolors.png" alt="cupón">
+        <div id="fondocupon">
+            <br>
+            <br>
+            <h1 class="centrar-texto">NOS ENCANTA CONSENTIRTE, ASÍ QUE...</h1>
+            <br>
+            <h4 style="text-align: center;">Usa el código del siguiente cupón en tus compras para tener descuentos
+                especiales.</h4>
+            <br>
+            <div class="centrar-texto">
+                <img src="images/CUPONES/propuestas a modificar/3 cupon cutsiecolors.png" alt="cupón">
+            </div>
+            <br><br>
         </div>
-        <br><br>
-    </div>
-    <?php } ?>
+        <?php } ?>
 </body>

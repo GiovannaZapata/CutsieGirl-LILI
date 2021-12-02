@@ -1,22 +1,30 @@
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 90%;
-}
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+  }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+  td,
+  th {
+    border: 1px solid #F5F5F5;
+    text-align: left;
+    padding: 8px;
+  }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-tr.fondo{
-  background-color: white;
-}
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  tr.fondo {
+    background-color: #F5F5F5;
+  }
+
+  .ipanel{
+    font-size: 35px;
+    margin: 30px;
+    color: #797979;
+  }
 </style>
 <?php
 include_once '../connection/Object_Connection.php';
@@ -31,136 +39,169 @@ $stmt = $maximo->getMaximo();
 <table>
   <tr>
     <td>
-    <h5>Inversion Mayoritaria.</h5>
-    <?php
+      <div style="margin: 10px; padding: 15px; background-color: white; border-radius: 5px;">
+        <h5>Inversion Mayoritaria</h5>
+        <?php
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+        <h6>Nombre del articulo: <?php echo $row['nombre']; ?></h6>
+        <h6>Inversion: <?php echo $row['mul']; ?></h6><br><?php
+          }
+          ?>
+      </div>
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    ?>
-
-      <h6>Nombre del articulo: <?php echo $row['nombre']; ?></h6>
-      <h6>Inversion: <?php echo $row['mul']; ?></h6><br><?php
-      }
-
+      <?php
       $minimo = new Maximo($db);
       $auxmin = $minimo->getMinimo();?>
-      <h5>Compra más pequeña</h5>
-      <?php
-      while($auxmin2 = $auxmin->fetch(PDO::FETCH_ASSOC)){
+      <hr>
+      <div style="margin: 10px; padding: 15px; background-color: white; border-radius: 5px;">
+        <h5>Compra más pequeña</h5>
+        <?php
+        while($auxmin2 = $auxmin->fetch(PDO::FETCH_ASSOC)){
         ?>
-        <h6>Cantidad: <?php echo $auxmin2['cantidad']; ?></h6>
-      <h6>Al Proveedor: <?php echo $auxmin2['nombre']; ?></h6>
-      <h6>Fecha: <?php echo $auxmin2['fecha']; ?></h6>
-      <br>
-      </td>
+          <h6>Cantidad: <?php echo $auxmin2['cantidad']; ?></h6>
+          <h6>Al proveedor: <?php echo $auxmin2['nombre']; ?></h6>
+          <h6>Fecha: <?php echo $auxmin2['fecha']; ?></h6>
+          <br>
+      </div>
+    </td>
       <?php
       }
 
-$resurtir= new Maximo($db);
-$aux = $resurtir->getResurtir();
-?>
-<td>
-<h5>A punto de agotarse en bodega.</h5><br>
-<table>
-<tr>
-    <th>Nombre del Articulo</th>
-    <th>Existencia</th>
-    <th>Proveedor</th>
-    <th>Telefono</th>
-  </tr>
-<?php
-while ($aux2 = $aux->fetch(PDO::FETCH_ASSOC)) {
-    ?>
-    <tr>
-    <td> <?php echo $aux2['nombre']; ?></td>
-    <td> <?php echo $aux2['existencia']; ?></td>
-    <td> <?php echo $aux2['nomprov']; ?></td>
-    <td> <?php echo $aux2['telefono']; ?></td>
-    </tr>
+      $resurtir= new Maximo($db);
+      $aux = $resurtir->getResurtir();
+      ?>
+    <td>
+      <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+        <center>
+          <h5>Artículos a punto de agotarse en bodega</h5><br>
+          <table>
+            <tr>
+              <th>Nombre del articulo</th>
+              <th>Existencia</th>
+              <th>Proveedor</th>
+              <th>Telefono</th>
+            </tr>
+        </center>
+        <?php
+        while ($aux2 = $aux->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+        </center>
+        <tr>
+          <td> <?php echo $aux2['nombre']; ?></td>
+          <td> <?php echo $aux2['existencia']; ?></td>
+          <td> <?php echo $aux2['nomprov']; ?></td>
+          <td> <?php echo $aux2['telefono']; ?></td>
+        </tr>
+        </center>
 
-<?php
-} 
-?>
-</table>
-</td>
+        <?php
+        } 
+        ?>
+      </div>
+      </table>
+    </td>
 </tr>
+
 <tr class='fondo'>
   <td>
-<?php
-$totalUser = new Maximo($db);
-$auxTotal = $totalUser->getPedidoReciente();
-?>
-<br><br><h5>Ventas registradas recientemente</h5><br>
-<table>
-<tr>
-    <th>idPedido</th>
-    <th>Usuario</th>
-    <th>Fecha</th>
-    <th>Venta total</th>
-    <th>idCupon</th>
-  </tr>
-<?php
-while ($auxTotal2 = $auxTotal->fetch(PDO::FETCH_ASSOC)){
-  ?>
-    <tr>
-    <td> <?php echo $auxTotal2['idPedido']; ?></td>
-    <td> <?php echo $auxTotal2['nombre_usuario']; ?></td>
-    <td> <?php echo $auxTotal2['fecha']; ?></td>
-    <td> <?php echo $auxTotal2['venta_total']; ?></td>
-    <td> <?php echo $auxTotal2['idCupon']; ?></td>
-    </tr>
     <?php
+      $totalUser = new Maximo($db);
+      $auxTotal = $totalUser->getPedidoReciente();
+    ?>
+    <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+      <center>
+        <h5>Ventas registradas recientemente</h5><br>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Venta total</th>
+            <th>idCupon</th>
+          </tr>
+      </center>
+      <?php
+        while ($auxTotal2 = $auxTotal->fetch(PDO::FETCH_ASSOC)){
+      ?>
+      <center>
+        <tr>
+          <td> <?php echo $auxTotal2['idPedido']; ?></td>
+          <td> <?php echo $auxTotal2['nombre_usuario']; ?></td>
+          <td> <?php echo $auxTotal2['fecha']; ?></td>
+          <td> <?php echo $auxTotal2['venta_total']; ?></td>
+          <td> <?php echo $auxTotal2['idCupon']; ?></td>
+        </tr>
+      </center>
+<?php
 }
 ?>
 </table>
+</div>
 </td>
 
 <td>
 
-<?php
-
-$eliminado = new Maximo($db);
-$auxEliminado = $eliminado->getArticulosEliminados();
-?>
-<br><br><h5>Articulos eliminados</h5><br>
-<table>
-<tr>
-    <th>Id Articulo</th>
-    <th>Nombre</th>
-    <th>Marca</th>
-    <th>Descripcion</th>
-    <th>Proveedor</th>
-    <th>Categoria</th>
-  </tr>
-<?php
-
-while ($auxEliminado2 = $auxEliminado->fetch(PDO::FETCH_ASSOC)){
+  <?php
+    $eliminado = new Maximo($db);
+    $auxEliminado = $eliminado->getArticulosEliminados();
   ?>
-    <tr>
-    <td> <?php echo $auxEliminado2['idArticulo']; ?></td>
-    <td> <?php echo $auxEliminado2['nombre']; ?></td>
-    <td> <?php echo $auxEliminado2['marca']; ?></td>
-    <td> <?php echo $auxEliminado2['descripcion']; ?></td>
-    <td> <?php echo $auxEliminado2['nomProveedor']; ?></td>
-    <td> <?php echo $auxEliminado2['nomCategoria']; ?></td>
-    </tr>
+  <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+    <center>
+      <br>
+      <h5>Articulos eliminados</h5><br>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Marca</th>
+          <th>Descripcion</th>
+          <th>Proveedor</th>
+          <th>Categoria</th>
+        </tr>
+    </center>
     <?php
-}
-?>
-</table>
+      while ($auxEliminado2 = $auxEliminado->fetch(PDO::FETCH_ASSOC)){
+    ?>
+    <center>
+      <tr>
+        <td> <?php echo $auxEliminado2['idArticulo']; ?></td>
+        <td> <?php echo $auxEliminado2['nombre']; ?></td>
+        <td> <?php echo $auxEliminado2['marca']; ?></td>
+        <td> <?php echo $auxEliminado2['descripcion']; ?></td>
+        <td> <?php echo $auxEliminado2['nomProveedor']; ?></td>
+        <td> <?php echo $auxEliminado2['nomCategoria']; ?></td>
+      </tr>
+    </center>
+    <?php
+    } 
+    ?>
+  </table>
+  </div>
 </td>
 </tr>
+
 <tr>
   <td>
-<?php
-$p1 = new Maximo($db);
-$auxp1 = $p1->getP1();
-while ($auxp12 = $auxp1->fetch(PDO::FETCH_ASSOC)){
-  ?>
-  <br><br>
-  <h5>Articulos en inventario: <?php echo $auxp12['disponibles']; ?></h5>
-  <?php
-}
-?>
-</td>
+    <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+    <?php
+      $p1 = new Maximo($db);
+      $auxp1 = $p1->getP1();
+      while ($auxp12 = $auxp1->fetch(PDO::FETCH_ASSOC)){
+    ?>
+    <h5>Articulos en inventario: <?php echo $auxp12['disponibles']; ?></h5>
+    <?php
+    }
+    ?>
+  </td>
+  <td>
+    <center>
+    <i class="fas fa-tshirt ipanel"></i>
+    <i class="fas fa-shopping-cart ipanel"></i>
+    <i class="fas fa-store ipanel"></i>
+    <i class="fas fa-chart-area ipanel"></i>
+    </center>
+  </td>
 </tr>
 </table>
+</div>

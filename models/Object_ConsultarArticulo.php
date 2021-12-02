@@ -12,7 +12,7 @@ $stmt = $consultarArt->consultarArticulo($nameArticulo);
 
 <table width="50%">
     <tr>
-        <th>idArticulo</th>
+        <th>ID</th>
         <th>Nombre</th>
         <th>Marca</th>
         <th>Precio</th>
