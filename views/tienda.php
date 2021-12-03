@@ -328,7 +328,7 @@ $db = $database->getConnection();
                         <center>
                             <?php $p2=new Maximo($db); $auxp=$p2->busquedaArticulo();?>
                             <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
-                                <h5>Productos con precio mayor a $200</h5><br>
+                                <h5>Productos con precio mayor a $400</h5><br>
                                 <table width="50%">
                                     <tr>
                                         <th>Nombre</th>
