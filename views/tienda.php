@@ -358,9 +358,9 @@ $db = $database->getConnection();
                     </td>
                     <td style="width: 50%; padding-bottom: 100px;">
                         <div class="row">
-                            <div class="col">
+                            <div class="col mb-5">
                                 <center>
-                                    <button type="button" id="botonArticuloMasVendido" class="btn btn-outline-dark">Artículo mas vendido</button><br><br>
+                                    <button type="button" id="botonArticuloMasVendido" class="btn btn-outline-success">Artículo mas vendido</button><br><br>
                                     <div id="resultadoArticuloMasVendido"></div>
                                 </center>
                                 <script>
@@ -381,10 +381,10 @@ $db = $database->getConnection();
                                     });
                                 </script>
                             </div>
-
+                            <div class="w-100"></div>
                             <div class="col">
                                 <center>
-                                    <button type="button" id="botonArticuloMenosVendido" class="btn btn-outline-dark">Artículo menos vendido</button><br><br>
+                                    <button type="button" id="botonArticuloMenosVendido" class="btn btn-outline-danger">Artículo menos vendido</button><br><br>
                                     <div id="resultadoArticuloMenosVendido"></div>
                                 </center>
                                 <script>
