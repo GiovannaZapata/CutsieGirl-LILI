@@ -40,14 +40,16 @@ $stmt = $maximo->getMaximo();
   <tr>
     <td>
       <div style="margin: 10px; padding: 15px; background-color: white; border-radius: 5px;">
-        <h5>Inversion Mayoritaria</h5>
+        <h5>Venta mas grande registrada</h5><br>
         <?php
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
-        <h6>Nombre del articulo: <?php echo $row['nombre']; ?></h6>
-        <h6>Inversion: <?php echo $row['mul']; ?></h6><br><?php
+        <h6><strong>Usuario que efectuo la venta:</strong> <?php echo $row['nombre']; ?></h6>
+        <h6><strong>Fecha: </strong><?php echo $row['fecha']; ?></h6>
+        <h6><strong>Venta total: </strong><?php echo $row['maxVenta']; ?></h6>
+        <?php
           }
-          ?>
+        ?>
       </div>
 
       <?php
@@ -55,13 +57,13 @@ $stmt = $maximo->getMaximo();
       $auxmin = $minimo->getMinimo();?>
       <hr>
       <div style="margin: 10px; padding: 15px; background-color: white; border-radius: 5px;">
-        <h5>Compra más pequeña</h5>
+        <h5>Venta más pequeña registrada</h5><br>
         <?php
         while($auxmin2 = $auxmin->fetch(PDO::FETCH_ASSOC)){
         ?>
-          <h6>Cantidad: <?php echo $auxmin2['cantidad']; ?></h6>
-          <h6>Al proveedor: <?php echo $auxmin2['nombre']; ?></h6>
-          <h6>Fecha: <?php echo $auxmin2['fecha']; ?></h6>
+          <h6><strong>Usuario que efectuo la venta:</strong> <?php echo $auxmin2['nombre']; ?></h6>
+          <h6><strong>Fecha:</strong> <?php echo $auxmin2['fecha']; ?></h6>
+          <h6><strong>Venta total:</strong><?php echo $auxmin2['minVenta']; ?></h6>
           <br>
       </div>
     </td>

@@ -205,96 +205,67 @@ $db = $database->getConnection();
         <center>
             <table>
                 <tr>
-                    <td style="width: 50%; padding-bottom: 100px;">
-                        <center>
-                            <?php
-                                $p2 = new Maximo($db);
-                                $auxp = $p2->busquedaArticulo();
-                            ?>
-                            <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
-                                <h5>Productos con precio mayor a $200</h5><br>
-                                <table width="50%">
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Marca</th>
-                                        <th>Existencia</th>
-                                        <th>Precio</th>
-                                    </tr>
-                                    <?php
-                                        while ($auxprueba = $auxp->fetch(PDO::FETCH_ASSOC)){
-                                    ?>
-                                    <tr>
-                                        <td> <?php echo $auxprueba['nombre']; ?></td>
-                                        <td> <?php echo $auxprueba['marca']; ?></td>
-                                        <td> <?php echo $auxprueba['existencia']; ?></td>
-                                        <td> <?php echo $auxprueba['precio']; ?></td>
-                                    </tr>
-                                    <?php
+                    <td style="width: 50%; padding-bottom: 50px;">
+
+                        <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+                            <center>
+                                <h5><label for="nombreProveedor" class="col-form-label">Buscar proveedor</label>
+                                </h5><br>
+                                <form>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="nombreProveedor"
+                                                name="nombreProveedor"
+                                                placeholder="Ingresa nombre de proveedor a buscar" required="required">
+                                        </div>
+                                        <button type="button" class="btn btn-primary col-sm-2 col-form-label"
+                                            id="botonBuscarProveedor">Buscar</button>
+                                    </div><br>
+                                    <div id="respuesta"></div>
+                                </form>
+
+                                <script>
+                                    $('#botonBuscarProveedor').click(function () {
+                                        var nombreProveedor = document.getElementById('nombreProveedor').value;
+                                        var ruta = "nombreProveedor=" + nombreProveedor;
+
+                                        //verificar que se hay ingresado un proveedor
+                                        if (nombreProveedor == null || nombreProveedor.length == 0 || /^\s+$/
+                                            .test(nombreProveedor)) {
+                                            swal({
+                                                icon: 'warning',
+                                                text: '¡Ingrese proveedor a buscar!',
+                                                buttons: false,
+                                                timer: 2000
+                                            })
+                                            $('#nombreProveedor').focus()
+                                            return
                                         }
-                                    ?>
-                                </table>
-                            </div>
-                        </center>
+
+                                        $.ajax({
+                                                url: "./models/Object_ConsultarProveedor.php",
+                                                type: "POST",
+                                                data: ruta,
+                                            })
+                                            .done(function (res) {
+                                                $('#respuesta').html(res)
+                                            })
+                                            .fail(function () {
+                                                console.log("error");
+                                            })
+                                            .always(function () {
+                                                console.log("complete");
+                                            });
+
+                                    });
+                                </script>
+
+                            </center>
+                        </div>
                     </td>
 
-                    <td style="width: 50%; padding-bottom: 100px;">
+                    <td style="width: 50%; padding-bottom: 50px;">
                         <div class="col">
-                            <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
-                                <center>
-                                    <h5><label for="nombreProveedor" class="col-form-label">Buscar proveedor</label>
-                                    </h5><br>
-                                    <form>
-                                        <div class="form-group row">
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="nombreProveedor"
-                                                    name="nombreProveedor"
-                                                    placeholder="Ingresa nombre de proveedor a buscar"
-                                                    required="required">
-                                            </div>
-                                            <button type="button" class="btn btn-primary col-sm-2 col-form-label"
-                                                id="botonBuscarProveedor">Buscar</button>
-                                        </div><br>
-                                        <div id="respuesta"></div>
-                                    </form>
-
-                                    <script>
-                                        $('#botonBuscarProveedor').click(function () {
-                                            var nombreProveedor = document.getElementById('nombreProveedor').value;
-                                            var ruta = "nombreProveedor=" + nombreProveedor;
-
-                                            //verificar que se hay ingresado un proveedor
-                                            if (nombreProveedor == null || nombreProveedor.length == 0 || /^\s+$/.test(nombreProveedor)) {
-                                                swal({
-                                                    icon: 'warning',
-                                                    text: '¡Ingrese proveedor a buscar!',
-                                                    buttons: false,
-                                                    timer: 2000
-                                                })
-                                                $('#nombreProveedor').focus()
-                                                return
-                                            }
-
-                                            $.ajax({
-                                                    url: "./models/Object_ConsultarProveedor.php",
-                                                    type: "POST",
-                                                    data: ruta,
-                                                })
-                                                .done(function (res) {
-                                                    $('#respuesta').html(res)
-                                                })
-                                                .fail(function () {
-                                                    console.log("error");
-                                                })
-                                                .always(function () {
-                                                    console.log("complete");
-                                                });
-
-                                        });
-                                    </script>
-
-                                </center>
-                            </div><br><br>
-
                             <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
                                 <center>
                                     <h5><label for="nameArticulo" class="col-form-label">Buscar artículo</label></h5>
@@ -319,7 +290,8 @@ $db = $database->getConnection();
                                         var ruta = "nameArticulo=" + nameArticulo;
 
                                         //verificar que se hay ingresado un articulo
-                                        if (nameArticulo == null || nameArticulo.length == 0 || /^\s+$/.test(nameArticulo)) {
+                                        if (nameArticulo == null || nameArticulo.length == 0 || /^\s+$/.test(
+                                                nameArticulo)) {
                                             swal({
                                                 icon: 'warning',
                                                 text: '¡Ingrese articulo a buscar!',
@@ -350,11 +322,99 @@ $db = $database->getConnection();
 
                     </td>
                 </tr>
+
+                <tr class='fondo'>
+                    <td style="width: 50%; padding-bottom: 100px;">
+                        <center>
+                            <?php $p2=new Maximo($db); $auxp=$p2->busquedaArticulo();?>
+                            <div style="margin: 10px; padding: 40px; background-color: white; border-radius: 5px;">
+                                <h5>Productos con precio mayor a $200</h5><br>
+                                <table width="50%">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Marca</th>
+                                        <th>Existencia</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                    <?php while ($auxprueba=$auxp->fetch(PDO::FETCH_ASSOC)){?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $auxprueba['nombre']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $auxprueba['marca']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $auxprueba['existencia']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $auxprueba['precio']; ?>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </table>
+                            </div>
+                        </center>
+                    </td>
+                    <td style="width: 50%; padding-bottom: 100px;">
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <button type="button" id="botonArticuloMasVendido" class="btn btn-outline-dark">Artículo mas vendido</button><br><br>
+                                    <div id="resultadoArticuloMasVendido"></div>
+                                </center>
+                                <script>
+                                    $('#botonArticuloMasVendido').click(function () {
+
+                                        $.ajax({
+                                                url: "./models/Object_ArticuloMasVendido.php",
+                                            })
+                                            .done(function (res) {
+                                                $('#resultadoArticuloMasVendido').html(res)
+                                            })
+                                            .fail(function () {
+                                                console.log("error");
+                                            })
+                                            .always(function () {
+                                                console.log("complete");
+                                            });
+                                    });
+                                </script>
+                            </div>
+
+                            <div class="col">
+                                <center>
+                                    <button type="button" id="botonArticuloMenosVendido" class="btn btn-outline-dark">Artículo menos vendido</button><br><br>
+                                    <div id="resultadoArticuloMenosVendido"></div>
+                                </center>
+                                <script>
+                                    $('#botonArticuloMenosVendido').click(function () {
+
+                                        $.ajax({
+                                                url: "./models/Object_ArticuloMenosVendido.php",
+                                            })
+                                            .done(function (res) {
+                                                $('#resultadoArticuloMenosVendido').html(res)
+                                            })
+                                            .fail(function () {
+                                                console.log("error");
+                                            })
+                                            .always(function () {
+                                                console.log("complete");
+                                            });
+                                    });
+                                </script>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
                 <tr class='fondo'>
                     <td>
                         <center>
-                            <button type="button" id="botonVistaArticulo" class="btn btn-outline-dark">Ver artículos en
-                                inventario</button><br><br>
+                            <button type="button" id="botonVistaArticulo" class="btn btn-outline-dark">Ver artículos en inventario</button><br><br>
                             <div id="resultadoVistaArticulo"></div>
                         </center>
                         <script>

@@ -11,7 +11,8 @@ class Maximo {
 
     function getMaximo() {
         
-        $query = "SELECT a.nombre,max((b.existencia*b.precio))as mul FROM u672703426_cutsiegirl.articulo a, u672703426_cutsiegirl.inventario b where a.idArticulo=b.idArticulo";
+        //$query = "SELECT a.nombre,max((b.existencia*b.precio))as mul FROM u672703426_cutsiegirl.articulo a, u672703426_cutsiegirl.inventario b where a.idArticulo=b.idArticulo";
+        $query = "SELECT u.nombre, p.fecha, MAX(p.venta_total)as maxVenta FROM u672703426_cutsiegirl.usuario u, u672703426_cutsiegirl.pedido p WHERE u.idUsuario=p.idUsuario";
 
         $stmt = $this->conn->prepare($query);
         if($stmt->execute())
@@ -21,12 +22,9 @@ class Maximo {
 
     } 
     function getMinimo(){
-         
-        
-        $query = "SELECT b.nombre, min(a.cantidad) as cantidad, a.fecha
-                FROM u672703426_cutsiegirl.compras a, u672703426_cutsiegirl.proveedores b
-                WHERE a.idProveedor=b.idProveedor";
-        
+                 
+        $query = "SELECT u.nombre, p.fecha, MIN(p.venta_total)as minVenta FROM u672703426_cutsiegirl.usuario u, u672703426_cutsiegirl.pedido p WHERE u.idUsuario=p.idUsuario";
+
         $stmt = $this->conn->prepare($query);
         if($stmt->execute())
             return $stmt;
